@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f3aaaa062a7c24f86bb2cefadca4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSelectionPanel: {fileID: 5835625455440173596, guid: 98392b90682188b40bc6c5533fed2b44, type: 3}
 --- !u!1 &311293287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,9 +1275,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateAccountButton, Assembly-CSharp
-        m_MethodName: TryCreateAccount
+      - m_Target: {fileID: 196865764}
+        m_TargetAssemblyTypeName: Background_MainScene, Assembly-CSharp
+        m_MethodName: SetStageSelectionPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
