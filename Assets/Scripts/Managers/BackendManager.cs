@@ -14,7 +14,7 @@ public class BackendManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance);
+            DontDestroyOnLoad(gameObject);
             
             var bro = Backend.Initialize(true);
             if (bro.IsSuccess())
@@ -47,13 +47,13 @@ public class BackendManager : MonoBehaviour
         string id = Background_LogInScene.instance.idInputField.text;
         string password = Background_LogInScene.instance.passwordInputField.text;
 
-        if (id == null)
+        if (id == "")
         {
             GameManager.instance.SetAlarm("id를 입력하세요");
             return;
         }
         
-        if (password == null)
+        if (password == "")
         {
             GameManager.instance.SetAlarm("비밀번호를 입력하세요");
             return;
@@ -65,6 +65,7 @@ public class BackendManager : MonoBehaviour
         if(bro.IsSuccess())
         {
             GameManager.instance.SetAlarm("로그인에 성공하였습니다.");
+            GameManager.instance.LoadScene("MainScene");
         }
         else
         {
@@ -88,8 +89,25 @@ public class BackendManager : MonoBehaviour
     {
         string id = Background_SignInScene.instance.idInputField.text;
         string password = Background_SignInScene.instance.passwordInputField.text;
-        string passwordConfirm = Background_SignInScene.instance.passwordInputField.text;
+        string passwordConfirm = Background_SignInScene.instance.passwordConfirmInputField.text;
 
+        if (id == "")
+        {
+            GameManager.instance.SetAlarm("아이디를 입력하세요.");
+            return;
+        }
+        if (password == "")
+        {
+            GameManager.instance.SetAlarm("비밀번호를 입력하세요.");
+            return;
+        }
+        
+        if (passwordConfirm == "")
+        {
+            GameManager.instance.SetAlarm("확인용 비밀번호를 입력하세요.");
+            return;
+        }
+        
         if (password != passwordConfirm)
         {
             GameManager.instance.SetAlarm("패스워드가 일치하지 않습니다.");

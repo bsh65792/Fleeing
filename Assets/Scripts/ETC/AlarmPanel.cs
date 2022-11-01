@@ -28,6 +28,7 @@ public class AlarmPanel : MonoBehaviour
         {
             time += Time.deltaTime;
             image.color = new Color(1f, 1f, 1f, a * (1 - time));
+            alarmTMPro.color = new Color(1f, 1f, 1f, 1 - time);
             
             if (time >= 1f)
             {

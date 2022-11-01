@@ -291,10 +291,10 @@ RectTransform:
   m_Father: {fileID: 196865760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 142.81313}
-  m_SizeDelta: {x: 400, y: 86.613}
+  m_SizeDelta: {x: -480, y: -353.387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162252860
 MonoBehaviour:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86.6
+  m_fontSize: 100
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -611,10 +611,10 @@ RectTransform:
   m_Father: {fileID: 196865760}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000011325, y: -0.0000047982}
-  m_SizeDelta: {x: 317.3853, y: 100.9452}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -562.6147, y: -339.0548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &467218760
 MonoBehaviour:
@@ -1089,10 +1089,10 @@ RectTransform:
   m_Father: {fileID: 196865760}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 288, y: -80.761}
-  m_SizeDelta: {x: 200, y: 278.4783}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 288, y: -57.195496}
+  m_SizeDelta: {x: -680, y: -114.3907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903586470
 MonoBehaviour:
@@ -1111,7 +1111,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 160, y: 60}
@@ -2305,6 +2305,7 @@ GameObject:
   - component: {fileID: 1700612295}
   - component: {fileID: 1700612294}
   - component: {fileID: 1700612296}
+  - component: {fileID: 1700612297}
   m_Layer: 5
   m_Name: LogInButton
   m_TagString: Untagged
@@ -2415,8 +2416,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1728740378}
-        m_TargetAssemblyTypeName: BackendManager, Assembly-CSharp
+      - m_Target: {fileID: 1700612297}
+        m_TargetAssemblyTypeName: LogInButton, Assembly-CSharp
         m_MethodName: TryLogIn
         m_Mode: 1
         m_Arguments:
@@ -2427,6 +2428,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1700612297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700612292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503e275cadf4d2245990f669468eaa92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1728740377
 GameObject:
   m_ObjectHideFlags: 0
