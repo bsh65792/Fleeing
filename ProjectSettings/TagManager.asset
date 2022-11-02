@@ -7,6 +7,10 @@ TagManager:
   - Canvas
   - Wall
   - Plane
+  - PoliceCarAgent
+  - Map
+  - PlayerCar
+  - Wheel
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Wheel
+  - Car
   - 
   - 
   - 
