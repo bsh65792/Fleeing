@@ -336,7 +336,6 @@ MonoBehaviour:
   idNumber: 0
   rigidbody: {fileID: 1687979732381076288}
   realCar: {fileID: 7449508006632818199}
-  limitVelocity: 1
 --- !u!114 &7449508006836942600
 MonoBehaviour:
   m_ObjectHideFlags: 0

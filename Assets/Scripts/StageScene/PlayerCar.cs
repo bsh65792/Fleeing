@@ -8,7 +8,7 @@ public class PlayerCar : MonoBehaviour
 {
     private Rigidbody rigidbody;
     public GameObject realCar;
-    private float limitVelocity = 0.5f;
+    private float limitVelocity = 1.8f;
 
     private void Start()
     {
@@ -86,7 +86,7 @@ public class PlayerCar : MonoBehaviour
             return;
         }
         
-        rigidbody.AddForce(new Vector3(xForce / speed, 0f, zForce / speed), ForceMode.Impulse);
+        rigidbody.AddForce(new Vector3(xForce / speed * 0.1f, 0f, zForce / speed * 0.1f), ForceMode.Impulse);
         //Debug.Log("xForce : " + xForce + ", zForce : " + zForce);
     }
 

@@ -18,7 +18,7 @@ public class PoliceCarAgent : Agent
     private float limitVelocity = 0.3f;
 
     private int raycastQuantity = 12;
-    private RaycastHit[] hits;
+    private RaycastHit hit;
     private float maxDistance = 15f;
 
     private bool isCollisionWithWall;
@@ -33,6 +33,8 @@ public class PoliceCarAgent : Agent
         isCollisionWithWall = false;
         isCollisionWIthPoliceCarAgent = false;
         isCollisionWithPlayerCar = false;
+
+        transform.position = StageManager.instance.firstPoliceCarPos[idNumber].transform.position;
     }
     
     
@@ -41,22 +43,21 @@ public class PoliceCarAgent : Agent
     {
         for (int i = 0; i < raycastQuantity; i++)
         {
-            Debug.DrawRay(transform.position,new Vector3(Mathf.Sin(30 * i), 0f, Mathf.Cos(30 * i)), Color.blue, 0.3f);
-            hits = Physics.RaycastAll(transform.position, transform.forward, maxDistance);
+            Vector3 raycastDirection = new Vector3(Mathf.Sin(30 * i), 0f, Mathf.Cos(30 * i));
+            Debug.DrawRay(transform.position, raycastDirection, Color.blue, Time.deltaTime);
 
-            for (int j = 0; j < hits.Length; j++)
+            if (Physics.Raycast(transform.position, raycastDirection, out hit, maxDistance))
             {
-                float distance = Mathf.Sqrt((hits[j].transform.position.x - this.transform.position.x) *
-                                              (hits[j].transform.position.x - this.transform.position.x) +
-                                              (hits[j].transform.position.y - this.transform.position.y) *
-                                              (hits[j].transform.position.y - this.transform.position.y));
-                
-
-                if (hits[j].transform.CompareTag("Wall"))
+                float distance = Mathf.Sqrt((hit.transform.position.x - this.transform.position.x) *
+                                            (hit.transform.position.x - this.transform.position.x) +
+                                            (hit.transform.position.z - this.transform.position.z) *
+                                            (hit.transform.position.z - this.transform.position.z));
+            
+                if (hit.transform.CompareTag("Wall"))
                 {
                     sensor.AddObservation(new Vector2(distance, 1));        //벽을 만났을 땐 1을 함께 대입
                 }
-                else if (hits[j].transform.CompareTag("PlayerCar"))
+                else if (hit.transform.CompareTag("PlayerCar"))
                 {
                     sensor.AddObservation(new Vector2(distance, 0));        //플레이어 차량을 만났을 땐 0 대입
                 }
@@ -65,6 +66,7 @@ public class PoliceCarAgent : Agent
                     sensor.AddObservation(new Vector2(distance, -1));        //기타 -1 대입
                 }
             }
+            
         }
         
         

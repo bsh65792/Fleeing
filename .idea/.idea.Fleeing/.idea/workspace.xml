@@ -3,14 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7c05465a-50c6-40aa-a0c8-1a489efd0fd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fleeing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fleeing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Decorations/Materials/karoseria_green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Decorations/Materials/karoseria_green.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/StageScene_easy_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/StageScene_easy_timers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/길 관련/Wall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/길 관련/Wall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/차량 관련/PlayerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/차량 관련/PlayerCar.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/차량 관련/PoliceCarAgent.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/차량 관련/PoliceCarAgent.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StageScene/PlayerCar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StageScene/PlayerCar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/StageScene/PoliceCarAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StageScene/PoliceCarAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StageScene/StageManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StageScene/StageManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ETC/FadeInOutScenePanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/StageScene/StageScene_CameraManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SignInScene/CreateAccountButton_SignInScene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ETC/FadeInScenePanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SignInScene/BackButton_SignInScene.cs" root0="FORCE_HIGHLIGHTING" />
@@ -98,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667270127137</updated>
       <workItem from="1667270129299" duration="33265000" />
-      <workItem from="1667436457879" duration="5186000" />
+      <workItem from="1667436457879" duration="9071000" />
     </task>
     <servers />
   </component>
