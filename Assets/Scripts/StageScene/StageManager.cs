@@ -46,7 +46,7 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i < firstPoliceCarPos.Count; i++)
         {
-            if (i >= 1) break;
+            //if (i >= 1) break;
             GameObject policeCarAgentPrefab = Instantiate(policeCarAgent);
             //policeCarAgentPrefab.transform.SetParent(GameObject.FindGameObjectWithTag("Map").transform);
             policeCarAgentPrefab.transform.position = firstPoliceCarPos[i].transform.position;

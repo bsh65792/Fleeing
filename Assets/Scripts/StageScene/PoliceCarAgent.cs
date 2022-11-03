@@ -15,15 +15,18 @@ public class PoliceCarAgent : Agent
 
     public Rigidbody rigidbody;
     public GameObject realCar;
-    private float limitVelocity = 0.3f;
+    private float limitVelocity = 1.5f;
 
-    private int raycastQuantity = 1;//24 * 3;
+    private int raycastQuantity = 24 * 3;
     private RaycastHit hit;
     private float maxDistance = 200f;
 
     private bool isCollisionWithWall;
     private bool isCollisionWIthPoliceCarAgent;
     private bool isCollisionWithPlayerCar;
+
+    private float speed;
+    private float multiplePower = 3f;
     
     
     
@@ -43,8 +46,20 @@ public class PoliceCarAgent : Agent
     {
         for (int i = 0; i < raycastQuantity; i++)
         {
-            Vector3 raycastDirection = new Vector3(Mathf.Sin(5 * i) + realCar.transform.rotation.x, 0f + realCar.transform.rotation.y, Mathf.Cos(5 * i) + realCar.transform.rotation.z);
-            Debug.DrawRay(transform.position, raycastDirection, Color.blue, 0.1f);
+
+            /*Vector3 raycastDirection = new Vector3(rigidbody.velocity.x / speed + Mathf.Sin(5 * i),
+                0f,
+                rigidbody.velocity.z / speed + Mathf.Cos(5 * i));*/
+            
+            Vector3 raycastDirection = new Vector3(
+                rigidbody.velocity.x / speed * Mathf.Cos(5 * i)
+                - rigidbody.velocity.z / speed * Mathf.Sin(5 * i),
+                0f,
+                rigidbody.velocity.x / speed * Mathf.Sin(5 * i)
+                + rigidbody.velocity.z / speed * Mathf.Cos(5 * i));
+            
+            Debug.Log(raycastDirection);
+            Debug.DrawRay(transform.position, raycastDirection, Color.blue, 0.2f);
 
             if (Physics.Raycast(transform.position, raycastDirection, out hit, maxDistance))
             {
@@ -74,7 +89,7 @@ public class PoliceCarAgent : Agent
 
     public void Update()
     {
-        float speed = Mathf.Sqrt(rigidbody.velocity.x * rigidbody.velocity.x + 
+        speed = Mathf.Sqrt(rigidbody.velocity.x * rigidbody.velocity.x + 
                                  rigidbody.velocity.y * rigidbody.velocity.y +
                                  rigidbody.velocity.z * rigidbody.velocity.z);
         
@@ -111,8 +126,8 @@ public class PoliceCarAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = actionBuffers.ContinuousActions[0];
-        controlSignal.z = actionBuffers.ContinuousActions[1];
+        controlSignal.x = actionBuffers.ContinuousActions[0] * multiplePower;
+        controlSignal.z = actionBuffers.ContinuousActions[1] * multiplePower;
         rigidbody.AddForce(controlSignal);
         
         if (isCollisionWithWall == true || isCollisionWIthPoliceCarAgent)
@@ -132,8 +147,8 @@ public class PoliceCarAgent : Agent
     {
         
         var continuousActionsOut = actionsOut.ContinuousActions;
-        continuousActionsOut[0] = Input.GetAxis("Horizontal");
-        continuousActionsOut[1] = Input.GetAxis("Vertical");
+        continuousActionsOut[0] = Input.GetAxis("Horizontal") * multiplePower;
+        continuousActionsOut[1] = Input.GetAxis("Vertical") * multiplePower;
         
         
         //sphereRigidbody.AddForce(new Vector3(continuousActionsOut[0], 0f, continuousActionsOut[1]), ForceMode.Impulse);
