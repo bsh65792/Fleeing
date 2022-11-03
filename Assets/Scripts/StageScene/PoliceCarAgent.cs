@@ -15,7 +15,7 @@ public class PoliceCarAgent : Agent
 
     public Rigidbody rigidbody;
     public GameObject realCar;
-    public float limitVelocity = 0.1f;
+    private float limitVelocity = 0.3f;
 
     private int raycastQuantity = 12;
     private RaycastHit[] hits;
