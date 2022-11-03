@@ -22,7 +22,7 @@ public class PlayerCar : MonoBehaviour
                                  rigidbody.velocity.y * rigidbody.velocity.y +
                                  rigidbody.velocity.z * rigidbody.velocity.z);
         
-        if (speed > 0f)
+        if (speed > 0.01f)
         {
             float rotationY;
             if (rigidbody.velocity.z > 0f)

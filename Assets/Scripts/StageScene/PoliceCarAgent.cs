@@ -17,9 +17,9 @@ public class PoliceCarAgent : Agent
     public GameObject realCar;
     private float limitVelocity = 0.3f;
 
-    private int raycastQuantity = 12;
+    private int raycastQuantity = 1;//24 * 3;
     private RaycastHit hit;
-    private float maxDistance = 15f;
+    private float maxDistance = 200f;
 
     private bool isCollisionWithWall;
     private bool isCollisionWIthPoliceCarAgent;
@@ -43,15 +43,15 @@ public class PoliceCarAgent : Agent
     {
         for (int i = 0; i < raycastQuantity; i++)
         {
-            Vector3 raycastDirection = new Vector3(Mathf.Sin(30 * i), 0f, Mathf.Cos(30 * i));
-            Debug.DrawRay(transform.position, raycastDirection, Color.blue, Time.deltaTime);
+            Vector3 raycastDirection = new Vector3(Mathf.Sin(5 * i) + realCar.transform.rotation.x, 0f + realCar.transform.rotation.y, Mathf.Cos(5 * i) + realCar.transform.rotation.z);
+            Debug.DrawRay(transform.position, raycastDirection, Color.blue, 0.1f);
 
             if (Physics.Raycast(transform.position, raycastDirection, out hit, maxDistance))
             {
                 float distance = Mathf.Sqrt((hit.transform.position.x - this.transform.position.x) *
-                                            (hit.transform.position.x - this.transform.position.x) +
-                                            (hit.transform.position.z - this.transform.position.z) *
-                                            (hit.transform.position.z - this.transform.position.z));
+                                              (hit.transform.position.x - this.transform.position.x) +
+                                              (hit.transform.position.z - this.transform.position.z) *
+                                              (hit.transform.position.z - this.transform.position.z));
             
                 if (hit.transform.CompareTag("Wall"))
                 {
@@ -94,7 +94,7 @@ public class PoliceCarAgent : Agent
                 rotationY = -Mathf.Asin(rigidbody.velocity.x / speed) * 180 / Mathf.PI;
             }
             realCar.transform.rotation = Quaternion.Euler(new Vector3(0f, rotationY, 0f));
-            Debug.Log(rotationY);
+            //Debug.Log(rotationY);
         }
         
 
