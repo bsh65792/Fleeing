@@ -27,6 +27,9 @@ public class PoliceCarAgent : Agent
 
     private float speed;
     private float multiplePower = 3f;
+
+    private float beforeForceX;
+    private float beforeForceZ;
     
     
     
@@ -36,6 +39,8 @@ public class PoliceCarAgent : Agent
         isCollisionWithWall = false;
         isCollisionWIthPoliceCarAgent = false;
         isCollisionWithPlayerCar = false;
+        beforeForceX = 0f;
+        beforeForceZ = 0f;
 
         transform.position = StageManager.instance.firstPoliceCarPos[idNumber].transform.position;
     }
@@ -47,19 +52,19 @@ public class PoliceCarAgent : Agent
         for (int i = 0; i < raycastQuantity; i++)
         {
 
-            /*Vector3 raycastDirection = new Vector3(rigidbody.velocity.x / speed + Mathf.Sin(5 * i),
+            Vector3 raycastDirection = new Vector3(Mathf.Sin(5 * i),
                 0f,
-                rigidbody.velocity.z / speed + Mathf.Cos(5 * i));*/
+                Mathf.Cos(5 * i));
             
-            Vector3 raycastDirection = new Vector3(
+            /*Vector3 raycastDirection = new Vector3(
                 rigidbody.velocity.x / speed * Mathf.Cos(5 * i)
                 - rigidbody.velocity.z / speed * Mathf.Sin(5 * i),
                 0f,
                 rigidbody.velocity.x / speed * Mathf.Sin(5 * i)
-                + rigidbody.velocity.z / speed * Mathf.Cos(5 * i));
+                + rigidbody.velocity.z / speed * Mathf.Cos(5 * i));*/
             
-            Debug.Log(raycastDirection);
-            Debug.DrawRay(transform.position, raycastDirection, Color.blue, 0.2f);
+            //Debug.Log(raycastDirection);
+            //Debug.DrawRay(transform.position, raycastDirection, Color.blue, 0.2f);
 
             if (Physics.Raycast(transform.position, raycastDirection, out hit, maxDistance))
             {
@@ -129,15 +134,36 @@ public class PoliceCarAgent : Agent
         controlSignal.x = actionBuffers.ContinuousActions[0] * multiplePower;
         controlSignal.z = actionBuffers.ContinuousActions[1] * multiplePower;
         rigidbody.AddForce(controlSignal);
+
+
+        float a = Mathf.Sqrt(controlSignal.x * controlSignal.x + controlSignal.z * controlSignal.z);
+        float b = Mathf.Sqrt((controlSignal.x - beforeForceX) * (controlSignal.x - beforeForceX) +
+                             (controlSignal.z - beforeForceZ) * (controlSignal.z - beforeForceZ));
+        float c = Mathf.Sqrt(beforeForceX * beforeForceX + beforeForceZ + beforeForceZ);
+
+        float angle = Mathf.Acos((a * a + b * b - c * c) / 2f * a * b) * 180 / Mathf.PI;
+
+        if (Mathf.Abs(angle) >= 10f)
+        {
+            SetReward(-(int)(angle / 10f));
+        }
+        
+        
+        Debug.Log("angle : " + angle);
+
+        beforeForceX = controlSignal.x;
+        beforeForceZ = controlSignal.z;
+        
+        
         
         if (isCollisionWithWall == true || isCollisionWIthPoliceCarAgent)
         {
-            SetReward(-10.0f);
+            SetReward(-1000000000);
             EndEpisode();
         }
         else if (isCollisionWithPlayerCar == true)
         {
-            SetReward(30f);
+            SetReward(5000000000);
             EndEpisode();
         }
     }

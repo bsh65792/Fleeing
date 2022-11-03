@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 7449508006836942600}
   - component: {fileID: 1687979732381076288}
   - component: {fileID: 8114528951042090768}
+  - component: {fileID: 4164813593383355655}
   m_Layer: 7
   m_Name: PoliceCarAgent
   m_TagString: PoliceCarAgent
@@ -379,6 +380,35 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4164813593383355655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449508006836942604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - PoliceCarAgent
+  - PlayerCar
+  - Wall
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 70
+  m_SphereCastRadius: 0.5
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &8536311846762654318
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5b6d350b0446fd4bb81980150a0507e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5b6d350b0446fd4bb81980150a0507e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -515,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5b6d350b0446fd4bb81980150a0507e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5b6d350b0446fd4bb81980150a0507e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -527,7 +557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5b6d350b0446fd4bb81980150a0507e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5b6d350b0446fd4bb81980150a0507e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
