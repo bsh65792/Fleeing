@@ -46,12 +46,12 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i < firstPoliceCarPos.Count; i++)
         {
-            //if (i >= 1) break;
+            if (i >= 4) break;
             GameObject policeCarAgentPrefab = Instantiate(policeCarAgent);
             //policeCarAgentPrefab.transform.SetParent(GameObject.FindGameObjectWithTag("Map").transform);
             policeCarAgentPrefab.transform.position = firstPoliceCarPos[i].transform.position;
             policeCarAgentPrefab.transform.localRotation = firstPoliceCarPos[i].transform.localRotation;
-            policeCarAgentPrefab.GetComponent<PoliceCarAgent>().idNumber = i;       //policeCarAgent 마다 ID값을 부여한다.
+            policeCarAgentPrefab.GetComponent<PoliceCarAgent>().agentID = i;       //policeCarAgent 마다 ID값을 부여한다.
             policeCarAgents.Add(policeCarAgentPrefab);
             //firstPoliceCarPos[i].SetActive(false);
         }

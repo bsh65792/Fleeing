@@ -11,6 +11,7 @@ TagManager:
   - Map
   - PlayerCar
   - Wheel
+  - PoliceCarAgentForLearning
   layers:
   - Default
   - TransparentFX
@@ -20,9 +21,9 @@ TagManager:
   - UI
   - Wheel
   - Car
-  - 
-  - 
-  - 
+  - PoliceCarAgentForLearning
+  - Wall
+  - PlayerCar
   - 
   - 
   - 
