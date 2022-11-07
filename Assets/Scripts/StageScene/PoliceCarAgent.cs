@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -12,13 +13,18 @@ public class PoliceCarAgent : Agent
     public bool useVectorObs;
     Rigidbody rigidbody;
 
-    float agentSpeed = 0.3f;
+    float agentSpeed = 0.7f;
     StatsRecorder m_statsRecorder;
 
     private float deltaReward;
 
+    public float limitVelocity;
+    
+
     public override void Initialize()
     {
+        limitVelocity = 0.1f;
+        
         deltaReward = -1f / 21f / MaxStep;
         rigidbody = GetComponent<Rigidbody>();
         m_statsRecorder = Academy.Instance.StatsRecorder;
@@ -40,7 +46,7 @@ public class PoliceCarAgent : Agent
         var action = act[0];
         
         //가감속
-        switch (action)
+        /*switch (action)
         {
             case 0:
                 //AddReward(1f / MaxStep);
@@ -49,10 +55,12 @@ public class PoliceCarAgent : Agent
             default:
                 dirToGo = transform.forward * 1f;
                 break;
-        }
+        }*/
+        
+        //dirToGo = transform.forward * 1f;
 
         //회전
-        action = act[1];
+        action = act[0];
         switch (action)
         {
             case 0:
@@ -65,17 +73,43 @@ public class PoliceCarAgent : Agent
                 rotateDir = transform.up * 2f;
                 break;
             case 3:
-                rotateDir = transform.up * -1f;
+                rotateDir = transform.up * 3f;
                 break;
             case 4:
+                rotateDir = transform.up * 4f;
+                break;
+            case 5:
+                rotateDir = transform.up * -1f;
+                break;
+            case 6:
                 rotateDir = transform.up * -2f;
+                break;
+            case 7:
+                rotateDir = transform.up * -3f;
+                break;
+            case 8:
+                rotateDir = transform.up * -4f;
                 break;
             default:
                 break;
         }
         
-        transform.Rotate(rotateDir, Time.deltaTime * 150f);
-        rigidbody.AddForce(dirToGo * agentSpeed, ForceMode.VelocityChange);
+        transform.Rotate(rotateDir, Time.deltaTime * 500f);
+        
+        //rigidbody.AddForce(dirToGo * agentSpeed, ForceMode.VelocityChange);
+        /*if (Mathf.Sqrt(rigidbody.velocity.x * rigidbody.velocity.x + rigidbody.velocity.z + rigidbody.velocity.z) <=
+            limitVelocity)
+        {
+            rigidbody.AddForce(dirToGo * agentSpeed, ForceMode.VelocityChange);
+        }*/
+        
+    }
+
+    private void FixedUpdate()
+    {
+        /*rigidbody.AddForce(transform.forward * agentSpeed / 60f, ForceMode.VelocityChange);
+        if()*/
+        rigidbody.velocity = transform.forward * agentSpeed;
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -91,7 +125,7 @@ public class PoliceCarAgent : Agent
         //Debug.Log("tag name : " + col.gameObject.tag);
         if (col.gameObject.CompareTag("PlayerCar"))
         {
-            SetReward(1f);
+            SetReward(10f);
             //Debug.Log("PlayerCar와 충돌함.");
             m_statsRecorder.Add("Collision/Player", 1, StatAggregationMethod.Sum);
             EndEpisode();
