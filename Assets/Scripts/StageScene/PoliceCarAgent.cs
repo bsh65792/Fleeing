@@ -47,7 +47,6 @@ public class PoliceCarAgent : Agent
                 dirToGo = transform.forward * 0f;
                 break;
             default:
-                //AddReward(1f / MaxStep * 10f);
                 dirToGo = transform.forward * 1f;
                 break;
         }
@@ -58,7 +57,6 @@ public class PoliceCarAgent : Agent
         {
             case 0:
                 //직진
-                //AddReward(1f / MaxStep * 10f);
                 break;
             case 1:
                 rotateDir = transform.up * 1f;
