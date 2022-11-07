@@ -138,17 +138,11 @@ public class PoliceCarAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        ResetPosition();
+        StageManager.instance.PrepareNextEpisode();
         
         m_statsRecorder.Add("Collision/Player", 0, StatAggregationMethod.Sum);
         m_statsRecorder.Add("Collision/PoliceCarAgent", 0, StatAggregationMethod.Sum);
         m_statsRecorder.Add("Collision/Wall", 0, StatAggregationMethod.Sum);
     }
-
-    void ResetPosition()
-    {
-        transform.position = StageManager.instance.firstPoliceCarPos[agentID].transform.position;
-        transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-        rigidbody.velocity *= 0f;
-    }
+    
 }

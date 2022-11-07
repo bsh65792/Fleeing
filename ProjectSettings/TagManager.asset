@@ -12,6 +12,7 @@ TagManager:
   - PlayerCar
   - Wheel
   - PoliceCarAgentForLearning
+  - StartPoint
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class StageScene_CameraManager : MonoBehaviour
 {
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (StageManager.instance.isLearning == false)
         {
@@ -16,5 +16,5 @@ public class StageScene_CameraManager : MonoBehaviour
                 StageManager.instance.playerCarPrefab.transform.position.z - 1.3f);
         }
         
-    }
+    }*/
 }

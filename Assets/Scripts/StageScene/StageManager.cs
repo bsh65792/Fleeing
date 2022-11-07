@@ -19,9 +19,11 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
-    public GameObject playerCar;
-    public GameObject playerCarPrefab;
+
+    public GameObject[] maps;
     
+    public GameObject playerCar;
+
     public GameObject policeCarAgent;
     public List<GameObject> firstPoliceCarPos = new List<GameObject>();
     public GameObject firstPlayerCarPos;
@@ -31,6 +33,13 @@ public class StageManager : MonoBehaviour
     //강화학습 시 켜줘야 함
     public bool isLearning = true;
 
+
+    private GameObject policeCarAgentPrefab;
+    private GameObject playerCarPrefab;
+
+    private int nowLevel;
+    private int nextLevel;
+
     void Awake()
     {
         instance = this;
@@ -38,28 +47,71 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        GameStart();
-
+        policeCarAgentPrefab = Instantiate(policeCarAgent);
+        playerCarPrefab = Instantiate(playerCar);
+        nowLevel = 1;
+        SetLevelMap(1);
+        SetAllCarPosition();
     }
 
-    void GameStart()
+    //PoliceCarAgent에서 다음 에피소드 불러올 때 사용
+    public void PrepareNextEpisode()
     {
-        for (int i = 0; i < firstPoliceCarPos.Count; i++)
+        CheckLevel();
+        SetAllCarPosition();
+    }
+
+    public void CheckLevel()
+    {
+        if (nowLevel != nextLevel)
         {
-            if (i >= 4) break;
-            GameObject policeCarAgentPrefab = Instantiate(policeCarAgent);
-            //policeCarAgentPrefab.transform.SetParent(GameObject.FindGameObjectWithTag("Map").transform);
-            policeCarAgentPrefab.transform.position = firstPoliceCarPos[i].transform.position;
-            policeCarAgentPrefab.transform.localRotation = firstPoliceCarPos[i].transform.localRotation;
-            policeCarAgentPrefab.GetComponent<PoliceCarAgent>().agentID = i;       //policeCarAgent 마다 ID값을 부여한다.
-            policeCarAgents.Add(policeCarAgentPrefab);
-            //firstPoliceCarPos[i].SetActive(false);
+            SetLevelMap(nextLevel);
+            nowLevel = nextLevel;
+        }
+    }
+
+    public void SetNextLevel(int nextLevel)
+    {
+        this.nextLevel = nextLevel;
+    }
+
+    public void SetLevelMap(int level)
+    {
+        for (int i = 0; i < maps.Length; i++)
+        {
+            maps[i].SetActive(false);
+        }
+        
+        maps[level].SetActive(true);
+        SetAllCarPosition();
+    }
+    
+
+    public void SetAllCarPosition()
+    {
+
+        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StartPoint");
+
+        List<Vector3> startPointList = new List<Vector3>();
+
+        for (int i = 0; i < startPoints.Length; i++)
+        {
+            startPointList.Add(new Vector3(startPoints[i].transform.position.x, startPoints[i].transform.position.y, startPoints[i].transform.position.z));
         }
 
-        playerCarPrefab = Instantiate(playerCar);
-        playerCarPrefab.transform.position = firstPlayerCarPos.transform.position;
-        playerCarPrefab.transform.rotation = firstPlayerCarPos.transform.rotation;
-        //firstPlayerCarPos.SetActive(false);
+        int randomNumber = Random.Range(0, startPointList.Count);
+        
+        policeCarAgentPrefab.transform.position = startPointList[randomNumber];
+        startPointList.RemoveAt(randomNumber);
+        policeCarAgentPrefab.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+
+        
+        randomNumber = Random.Range(0, startPointList.Count);
+        
+        playerCarPrefab.transform.position = startPointList[randomNumber];
+        startPointList.RemoveAt(randomNumber);
+        playerCarPrefab.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+
     }
     
     
