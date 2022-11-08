@@ -91,4 +91,14 @@ public class PlayerCar : MonoBehaviour
     }
 
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("PoliceCarAgent"))
+        {
+            if (GameSceneManager.instance != null)
+            {
+                GameSceneManager.instance.AddScore();
+            }
+        }
+    }
 }

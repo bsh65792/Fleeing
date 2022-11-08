@@ -33980,12 +33980,21 @@ MonoBehaviour:
   - {fileID: 2079481302}
   - {fileID: 2060521325}
   - {fileID: 708721339}
+  - {fileID: 1483778656}
+  - {fileID: 1373245214}
+  - {fileID: 1799847710}
+  - {fileID: 1267152754}
+  - {fileID: 58803273}
+  - {fileID: 686967474}
+  - {fileID: 1252870589}
+  - {fileID: 1680182646}
+  - {fileID: 608301862}
   playerCar: {fileID: 2460412555431770453, guid: 1ef938e8dba8a894d984361b40f4e46d, type: 3}
   policeCarAgent:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8317407496785252691, guid: 4c852ed4c2c6e3b4b8b0c09c5152c9da, type: 3}
+  - {fileID: 8317407496785252691, guid: 4c852ed4c2c6e3b4b8b0c09c5152c9da, type: 3}
   - {fileID: 4596772560293945435, guid: 8289825e4eca80a40ac0af944bfa5ea1, type: 3}
-  - {fileID: 0}
+  - {fileID: 4596772560293945435, guid: 8289825e4eca80a40ac0af944bfa5ea1, type: 3}
   policeCarAgentDummy: {fileID: 4596772560293945435, guid: 8289825e4eca80a40ac0af944bfa5ea1, type: 3}
   firstPoliceCarPos:
   - {fileID: 0}
