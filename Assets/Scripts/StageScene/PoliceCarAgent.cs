@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.VisualScripting;
 
 public class PoliceCarAgent : Agent
 {
@@ -13,28 +14,28 @@ public class PoliceCarAgent : Agent
     public bool useVectorObs;
     Rigidbody rigidbody;
 
-    float agentSpeed = 0.7f;
+    float agentSpeed = 2f;
     StatsRecorder m_statsRecorder;
 
     private float deltaReward;
 
     public float limitVelocity;
-    
 
     public override void Initialize()
     {
-        limitVelocity = 0.1f;
-        
-        deltaReward = -1f / 21f / MaxStep;
+
         rigidbody = GetComponent<Rigidbody>();
         m_statsRecorder = Academy.Instance.StatsRecorder;
+        //StartCoroutine("Co_TurnToPlayerCar");
     }
+
+
 
     public override void CollectObservations(VectorSensor sensor)
     {
         if (useVectorObs)
         {
-            sensor.AddObservation(StepCount / (float)MaxStep);
+            //sensor.AddObservation(StepCount / (float)MaxStep);
         }
     }
 
@@ -44,20 +45,6 @@ public class PoliceCarAgent : Agent
         var rotateDir = Vector3.zero;
 
         var action = act[0];
-        
-        //가감속
-        /*switch (action)
-        {
-            case 0:
-                //AddReward(1f / MaxStep);
-                dirToGo = transform.forward * 0f;
-                break;
-            default:
-                dirToGo = transform.forward * 1f;
-                break;
-        }*/
-        
-        //dirToGo = transform.forward * 1f;
 
         //회전
         action = act[0];
@@ -65,6 +52,7 @@ public class PoliceCarAgent : Agent
         {
             case 0:
                 //직진
+                AddReward(1f / MaxStep);
                 break;
             case 1:
                 rotateDir = transform.up * 1f;
@@ -73,78 +61,82 @@ public class PoliceCarAgent : Agent
                 rotateDir = transform.up * 2f;
                 break;
             case 3:
-                rotateDir = transform.up * 3f;
+                rotateDir = transform.up * 7f;
                 break;
             case 4:
-                rotateDir = transform.up * 4f;
-                break;
-            case 5:
                 rotateDir = transform.up * -1f;
                 break;
-            case 6:
+            case 5:
                 rotateDir = transform.up * -2f;
                 break;
-            case 7:
-                rotateDir = transform.up * -3f;
-                break;
-            case 8:
-                rotateDir = transform.up * -4f;
+            case 6:
+                rotateDir = transform.up * -7f;
                 break;
             default:
                 break;
         }
         
-        transform.Rotate(rotateDir, Time.deltaTime * 500f);
-        
-        //rigidbody.AddForce(dirToGo * agentSpeed, ForceMode.VelocityChange);
-        /*if (Mathf.Sqrt(rigidbody.velocity.x * rigidbody.velocity.x + rigidbody.velocity.z + rigidbody.velocity.z) <=
-            limitVelocity)
-        {
-            rigidbody.AddForce(dirToGo * agentSpeed, ForceMode.VelocityChange);
-        }*/
+        transform.Rotate(rotateDir, Time.deltaTime * 1000f);
         
     }
 
     private void FixedUpdate()
     {
-        /*rigidbody.AddForce(transform.forward * agentSpeed / 60f, ForceMode.VelocityChange);
-        if()*/
         rigidbody.velocity = transform.forward * agentSpeed;
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
 
     {
-        AddReward(-1f / MaxStep);
         MoveAgent(actionBuffers.DiscreteActions);
+
         //Debug.Log("step : " + StepCount);
     }
 
     void OnCollisionEnter(Collision col)
     {
+        
         //Debug.Log("tag name : " + col.gameObject.tag);
-        if (col.gameObject.CompareTag("PlayerCar"))
+        if (col.gameObject.CompareTag("Wall"))
         {
-            SetReward(10f);
-            //Debug.Log("PlayerCar와 충돌함.");
-            m_statsRecorder.Add("Collision/Player", 1, StatAggregationMethod.Sum);
-            EndEpisode();
-        }
-        else if (col.gameObject.CompareTag("Wall"))
-        {
-            SetReward(-1f);
+            /*if (StageManager.instance.isLearning == false)
+            {
+                Destroy(gameObject);
+                return;
+            }*/
+            AddReward(-1f);
             m_statsRecorder.Add("Collision/Wall", 1, StatAggregationMethod.Sum);
             EndEpisode();
         }
-        /*else if (col.gameObject.CompareTag("PoliceCarAgent"))
+        else if (col.gameObject.CompareTag("PoliceCarAgent"))
         {
-            SetReward(-1f);
+            /*if (StageManager.instance.isLearning == false)
+            {
+                Destroy(gameObject);
+                return;
+            }*/
+            AddReward(-1f);
             m_statsRecorder.Add("Collision/PoliceCarAgent", 1, StatAggregationMethod.Sum);
             EndEpisode();
-        }*/
-        
-        
-        
+        }
+
+    }
+
+    private void OnCollisionStay(Collision col)
+    {
+        //Debug.Log("tag name : " + col.gameObject.tag);
+        if (col.gameObject.CompareTag("Wall"))
+        {
+            AddReward(-1f);
+            m_statsRecorder.Add("Collision/Wall", 1, StatAggregationMethod.Sum);
+            EndEpisode();
+        }
+        else if (col.gameObject.CompareTag("PoliceCarAgent"))
+        {
+            AddReward(-1f);
+            m_statsRecorder.Add("Collision/PoliceCarAgent", 1, StatAggregationMethod.Sum);
+            EndEpisode();
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -153,28 +145,29 @@ public class PoliceCarAgent : Agent
         
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            discreteActionsOut[1] = 1;
+            discreteActionsOut[0] = 2;
         }
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            discreteActionsOut[1] = 3;
-        }
-        
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            discreteActionsOut[0] = 1;
-        }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            discreteActionsOut[0] = 0;
+            discreteActionsOut[0] = 6;
         }
     }
 
     public override void OnEpisodeBegin()
     {
-        StageManager.instance.PrepareNextEpisode();
+        //StageManager.instance.PrepareNextEpisode();
+
+        if (GameSceneManager.instance != null)
+        {
+            GameSceneManager.instance.ResetPoliceCarPosition(gameObject);
+        }
+        else
+        {
+            StageManager.instance.ResetPoliceCarAgentPosition(gameObject);
+        }
         
-        m_statsRecorder.Add("Collision/Player", 0, StatAggregationMethod.Sum);
+        
+        //m_statsRecorder.Add("Collision/Player", 0, StatAggregationMethod.Sum);
         m_statsRecorder.Add("Collision/PoliceCarAgent", 0, StatAggregationMethod.Sum);
         m_statsRecorder.Add("Collision/Wall", 0, StatAggregationMethod.Sum);
     }

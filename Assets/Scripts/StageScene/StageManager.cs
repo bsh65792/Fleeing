@@ -31,11 +31,11 @@ public class StageManager : MonoBehaviour
     private List<GameObject> policeCarAgents = new List<GameObject>();
 
     //강화학습 시 켜줘야 함
-    public bool isLearning = true;
+    public bool isLearning;
 
 
     private GameObject policeCarAgentPrefab;
-    private GameObject playerCarPrefab;
+    public GameObject playerCarPrefab;
 
     private int nowLevel;
     private int nextLevel;
@@ -47,18 +47,53 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        policeCarAgentPrefab = Instantiate(policeCarAgent);
-        playerCarPrefab = Instantiate(playerCar);
-        nowLevel = 1;
-        SetLevelMap(1);
-        SetAllCarPosition();
+        if (isLearning == true)
+        {
+            //playerCarPrefab = Instantiate(playerCar);
+           // policeCarAgentPrefab = Instantiate(policeCarAgent);
+        
+            nowLevel = 1;
+            SetLevelMap(1);
+            //SetAllCarPosition();
+        }
+        else
+        {
+            nowLevel = 1;
+            SetLevelMap(1);
+        }
+        
+    }
+
+    public void CreatePoliceCarAgent()
+    {
+        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StartPoint");
+
+        int randomNumber = Random.Range(0, startPoints.Length);
+
+        GameObject policeCarAgentPref = Instantiate(policeCarAgent);
+        
+        policeCarAgentPref.transform.position = new Vector3(startPoints[randomNumber].transform.position.x, 0.06f, startPoints[randomNumber].transform.position.z);
+        policeCarAgentPref.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+    }
+
+    public void ResetPoliceCarAgentPosition(GameObject policeCarTemp)
+    {
+        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StartPoint");
+
+        int randomNumber = Random.Range(0, startPoints.Length);
+        
+        policeCarTemp.transform.position = new Vector3(startPoints[randomNumber].transform.position.x, 0.06f, startPoints[randomNumber].transform.position.z);
+        policeCarTemp.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
     }
 
     //PoliceCarAgent에서 다음 에피소드 불러올 때 사용
     public void PrepareNextEpisode()
     {
-        CheckLevel();
-        SetAllCarPosition();
+        if (isLearning == true)
+        {
+            CheckLevel();
+            SetAllCarPosition();
+        }
     }
 
     public void CheckLevel()
@@ -72,7 +107,25 @@ public class StageManager : MonoBehaviour
 
     public void SetNextLevel(int nextLevel)
     {
-        this.nextLevel = nextLevel;
+        if (isLearning == true)
+        {
+            this.nextLevel = nextLevel;
+        }
+        else
+        {
+            GameObject[] policeCars = GameObject.FindGameObjectsWithTag("PoliceCarAgent");
+            for (int i = 0; i < policeCars.Length; i++)
+            {
+                Destroy(policeCars[i]);
+            }
+            
+            for (int i = 0; i < maps.Length; i++)
+            {
+                maps[i].SetActive(false);
+            }
+        
+            maps[nextLevel].SetActive(true);
+        }
     }
 
     public void SetLevelMap(int level)
@@ -83,7 +136,19 @@ public class StageManager : MonoBehaviour
         }
         
         maps[level].SetActive(true);
-        SetAllCarPosition();
+
+        if (isLearning == true)
+        {
+            SetAllCarPosition();
+        }
+        
+        
+        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StartPoint");
+        for (int i = 0; i < startPoints.Length; i++)
+        {
+            startPoints[i].transform.localPosition = new Vector3(startPoints[i].transform.localPosition.x,
+                0.3f, startPoints[i].transform.localPosition.z);
+        }
     }
     
 
@@ -101,18 +166,24 @@ public class StageManager : MonoBehaviour
 
         int randomNumber = Random.Range(0, startPointList.Count);
         
-        policeCarAgentPrefab.transform.position = startPointList[randomNumber];
+        policeCarAgentPrefab.transform.position = new Vector3(startPointList[randomNumber].x, 0.06f, startPointList[randomNumber].z);
         startPointList.RemoveAt(randomNumber);
         policeCarAgentPrefab.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
 
         
         randomNumber = Random.Range(0, startPointList.Count);
         
-        playerCarPrefab.transform.position = startPointList[randomNumber];
+        playerCarPrefab.transform.position = new Vector3(startPointList[randomNumber].x, 0.06f, startPointList[randomNumber].z);
         startPointList.RemoveAt(randomNumber);
         playerCarPrefab.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
 
     }
-    
-    
+
+
+    public void GoToMainScene()
+    {
+        GameManager.instance.LoadScene("MainScene");
+    }
+
+
 }

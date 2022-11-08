@@ -50,7 +50,49 @@ public class StageSelectionPanel : MonoBehaviour
 
             yield return null;
         }
+        
+    }
+
+    public void DestroyThisPanel()
+    {
+        StartCoroutine("Co_DestroyThisPanel");
+    }
+
+    IEnumerator Co_DestroyThisPanel()
+    {
+        float destTime = 0.25f;
+        float time = 0f;
+        float firstScaleY = transform.localScale.y;
+
+        while (true)
+        {
+            time += Time.deltaTime;
+            transform.localScale = new Vector3(transform.localScale.x, firstScaleY * (1 - time * time * 4f), transform.localScale.z);
+
+            if (time >= destTime)
+            {
+                time = 0f;
+                transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
+                GameObject.Destroy(gameObject);
+                break;
+            }
+
+            yield return null;
+        }
+    }
 
 
+
+
+
+
+    public void GoToSimulationScene()
+    {
+        GameManager.instance.LoadScene("SimulationScene");
+    }
+
+    public void GoToGameScene()
+    {
+        GameManager.instance.LoadScene("GameScene");
     }
 }
