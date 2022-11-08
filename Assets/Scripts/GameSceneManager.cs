@@ -40,6 +40,10 @@ public class GameSceneManager : MonoBehaviour
     }
     
     
+    public void GoToMainScene()
+    {
+        GameManager.instance.LoadScene("MainScene");
+    }
     
     
 }

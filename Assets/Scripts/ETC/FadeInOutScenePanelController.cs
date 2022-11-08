@@ -12,5 +12,6 @@ public class FadeInOutScenePanelController : MonoBehaviour
         fadeInScenePanelPrefab.transform.SetParent(gameObject.transform);
         fadeInScenePanelPrefab.transform.localPosition = Vector3.zero;
         fadeInScenePanelPrefab.transform.localScale = Vector3.one;
+        Time.timeScale = 1f;
     }
 }

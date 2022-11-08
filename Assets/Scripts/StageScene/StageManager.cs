@@ -24,7 +24,8 @@ public class StageManager : MonoBehaviour
     
     public GameObject playerCar;
 
-    public GameObject policeCarAgent;
+    public GameObject[] policeCarAgent;
+    public GameObject policeCarAgentDummy;
     public List<GameObject> firstPoliceCarPos = new List<GameObject>();
     public GameObject firstPlayerCarPos;
     
@@ -64,13 +65,13 @@ public class StageManager : MonoBehaviour
         
     }
 
-    public void CreatePoliceCarAgent()
+    public void CreatePoliceCarAgent(int level)
     {
         GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StartPoint");
 
         int randomNumber = Random.Range(0, startPoints.Length);
 
-        GameObject policeCarAgentPref = Instantiate(policeCarAgent);
+        GameObject policeCarAgentPref = Instantiate(policeCarAgent[level]);
         
         policeCarAgentPref.transform.position = new Vector3(startPoints[randomNumber].transform.position.x, 0.06f, startPoints[randomNumber].transform.position.z);
         policeCarAgentPref.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
@@ -125,6 +126,16 @@ public class StageManager : MonoBehaviour
             }
         
             maps[nextLevel].SetActive(true);
+        }
+    }
+
+
+    public void ResetAll()
+    {
+        GameObject[] policeCars = GameObject.FindGameObjectsWithTag("PoliceCarAgent");
+        for (int i = 0; i < policeCars.Length; i++)
+        {
+            Destroy(policeCars[i]);
         }
     }
 
@@ -183,6 +194,12 @@ public class StageManager : MonoBehaviour
     public void GoToMainScene()
     {
         GameManager.instance.LoadScene("MainScene");
+    }
+
+
+    public void SetGameSpeed(int speed)
+    {
+        Time.timeScale = speed;
     }
 
 
