@@ -19,9 +19,10 @@ public class GameSceneMenuPanel : MonoBehaviour
         float destTime = 0.15f;
         float firstScale = -deltaRate * destTime * destTime + 1;
         transform.localScale = new Vector3(firstScale, firstScale, 1f);
+        
         while (true)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             transform.localScale = new Vector3(-deltaRate * (time - destTime) * (time - destTime) + 1, transform.localScale.y, transform.localScale.z);
 
             if (time >= destTime)
@@ -38,8 +39,8 @@ public class GameSceneMenuPanel : MonoBehaviour
         
         while (true)
         {
-            time += Time.deltaTime;
-            transform.localScale = new Vector3(transform.localScale.x, -deltaRate * (time - destTime) * (time - destTime) + 1, transform.localScale.z);
+            time += Time.unscaledDeltaTime;
+            transform.localScale = new Vector3(1f, -deltaRate * (time - destTime) * (time - destTime) + 1, transform.localScale.z);
 
             if (time >= destTime)
             {
@@ -66,7 +67,7 @@ public class GameSceneMenuPanel : MonoBehaviour
 
         while (true)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             transform.localScale = new Vector3(transform.localScale.x, firstScaleY * (1 - time * time * 4f), transform.localScale.z);
 
             if (time >= destTime)

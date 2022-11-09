@@ -93,7 +93,7 @@ public class PlayerCar : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("PoliceCarAgent"))
+        if (collision.gameObject.CompareTag("PoliceCarAgentForLearning"))
         {
             if (GameSceneManager.instance != null)
             {

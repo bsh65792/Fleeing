@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -19,6 +20,9 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
+
+    public Material greenTexture;
+    public Material redTexture;
 
     public GameObject[] maps;
     
@@ -200,6 +204,25 @@ public class StageManager : MonoBehaviour
     public void SetGameSpeed(int speed)
     {
         Time.timeScale = speed;
+    }
+
+
+
+    public void WarnRoadGrass()
+    {
+        StopCoroutine("Co_WarnRoadGrass");
+        StartCoroutine("Co_WarnRoadGrass");
+    }
+
+    IEnumerator Co_WarnRoadGrass()
+    {
+        GameObject roadGrass = GameObject.FindGameObjectWithTag("RoadGrass");
+
+        roadGrass.GetComponent<MeshRenderer>().material = redTexture;
+        yield return new WaitForSeconds(0.1f);
+        roadGrass.GetComponent<MeshRenderer>().material = greenTexture;
+        
+        yield return null;
     }
 
 

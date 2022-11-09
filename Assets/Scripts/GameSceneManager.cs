@@ -42,6 +42,7 @@ public class GameSceneManager : MonoBehaviour
 
     IEnumerator Co_SetScore()
     {
+        Debug.Log("Co_SetScore 호출됨ㅋ");
         while (remainTime >= 0)
         {
             timeTMPro.text = "Time : " + remainTime.ToString();

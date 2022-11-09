@@ -26,7 +26,7 @@ public class FadeOutScenePanel : FadeInOutScenePanel
 
         while (true)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             panelImage.color = new Color(0f, 0f, 0f, time / fadeInOutTime);
 
             if (time >= fadeInOutTime)

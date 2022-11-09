@@ -63,8 +63,11 @@ public class GameManager : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying = false;
         #endif
         
-        if (!Application.isEditor)
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        /*if (!Application.isEditor)
+            System.Diagnostics.Process.GetCurrentProcess().Kill();*/
+        
+        Application.Quit();
+        
         //Application.Quit은 앱크래시나는 버그가 있어 이렇게 처리
     }
 }

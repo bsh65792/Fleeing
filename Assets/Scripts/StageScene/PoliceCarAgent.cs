@@ -5,8 +5,6 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using Unity.VisualScripting;
-using UnityEditor.Build.Content;
 
 public class PoliceCarAgent : Agent
 {
@@ -105,6 +103,12 @@ public class PoliceCarAgent : Agent
                 Destroy(gameObject);
                 return;
             }*/
+
+            if (StageManager.instance != null)
+            {
+                StageManager.instance.WarnRoadGrass();
+            }
+            
             AddReward(-1f);
             m_statsRecorder.Add("Collision/Wall", 1, StatAggregationMethod.Sum);
             EndEpisode();
@@ -116,6 +120,12 @@ public class PoliceCarAgent : Agent
                 Destroy(gameObject);
                 return;
             }*/
+            
+            if (StageManager.instance != null)
+            {
+                StageManager.instance.WarnRoadGrass();
+            }
+            
             AddReward(-1f);
             m_statsRecorder.Add("Collision/PoliceCarAgent", 1, StatAggregationMethod.Sum);
             EndEpisode();
