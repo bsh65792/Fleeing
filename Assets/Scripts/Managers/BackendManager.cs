@@ -88,6 +88,7 @@ public class BackendManager : MonoBehaviour
     public void TryCreateAccount()
     {
         string id = Background_SignInScene.instance.idInputField.text;
+        string nickname = Background_SignInScene.instance.nicknameInfutField.text;
         string password = Background_SignInScene.instance.passwordInputField.text;
         string passwordConfirm = Background_SignInScene.instance.passwordConfirmInputField.text;
 
@@ -96,12 +97,19 @@ public class BackendManager : MonoBehaviour
             GameManager.instance.SetAlarm("아이디를 입력하세요.");
             return;
         }
+        
+        if (nickname == "")
+        {
+            GameManager.instance.SetAlarm("닉네임을 입력하세요.");
+            return;
+        }
+
         if (password == "")
         {
             GameManager.instance.SetAlarm("비밀번호를 입력하세요.");
             return;
         }
-        
+
         if (passwordConfirm == "")
         {
             GameManager.instance.SetAlarm("확인용 비밀번호를 입력하세요.");
@@ -114,10 +122,29 @@ public class BackendManager : MonoBehaviour
             return;
         }
         
+        
         BackendReturnObject bro = Backend.BMember.CustomSignUp(id, password);
+        
         if(bro.IsSuccess())
         {
             GameManager.instance.SetAlarm("회원가입에 성공했습니다.");
+            
+            BackendReturnObject broNickname = Backend.BMember.CreateNickname (nickname);
+
+            if (broNickname.IsSuccess() == false)
+            {
+                if (broNickname.GetStatusCode() == "409")
+                {
+                    GameManager.instance.SetAlarm("이미 존재하는 닉네임 입니다.");
+                }
+                else if (broNickname.GetStatusCode() == "400")
+                {
+                    GameManager.instance.SetAlarm("닉네임의 형식이 올바르지 않습니다.");
+                }
+
+                return;
+            }
+            
         }
         else
         {
@@ -137,7 +164,9 @@ public class BackendManager : MonoBehaviour
             {
                 GameManager.instance.SetAlarm("차단당한 Device 이거나 서버 과부하 상태입니다.");
             }
-            
+
+            return;
+
         }
     }
 }

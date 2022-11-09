@@ -3,29 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="7c05465a-50c6-40aa-a0c8-1a489efd0fd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fleeing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fleeing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CubexCube - Free City Pack I/Materials/Texture_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CubexCube - Free City Pack I/Materials/Texture_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Decorations/Materials/karoseria_green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Decorations/Materials/karoseria_green.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/GameScene_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/GameScene_timers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/LogInScene_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/LogInScene_timers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/MainScene_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/MainScene_timers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/SimulationScene_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/SimulationScene_timers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/길 관련/Road_Grass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/길 관련/Road_Grass.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/차량 관련/PoliceCarAgent_Lv2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/차량 관련/PoliceCarAgent_Lv2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/차량 관련/StartPoint (0).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/차량 관련/StartPoint (0).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/기타 관련/ResultPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/기타 관련/ResultPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LogInScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LogInScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SignInScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SignInScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SimulationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SimulationScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ETC/FadeOutScenePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ETC/FadeOutScenePanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameSceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameSceneManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameSceneMenuPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameSceneMenuPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainScene/Background_MainScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainScene/Background_MainScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/BackendManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BackendManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ResultPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ResultPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StageScene/PlayerCar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StageScene/PlayerCar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StageScene/PoliceCarAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StageScene/PoliceCarAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StageScene/StageManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StageScene/StageManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SignInScene/Background_SignInScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SignInScene/Background_SignInScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Light SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Light SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/NotoSansKR-Black SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/NotoSansKR-Black SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,12 +41,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainScene/SelfDriveSimulatorButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainScene/StageSelectionPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RankingPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SignInScene/BackButton_SignInScene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SignInScene/Background_SignInScene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SignInScene/CreateAccountButton_SignInScene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StageScene/PlayerCar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StageScene/StageManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StageScene/StageScene_CameraManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserRankingPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.barracuda@3.0.0/Barracuda/Runtime/ONNX/ONNXModelConverter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.17.2/Editor/Collaborate/UserInterface/CollaborateWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ml-agents@2.3.0-exp.2/Runtime/Academy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -82,12 +78,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "settings.editor.selected.configurable": "CodeLensConfigurable"
+  }
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Desktop/기말 프로젝트\Fleeings.exe" />
