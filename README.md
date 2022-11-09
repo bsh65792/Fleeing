@@ -3,5 +3,5 @@
 
 
 ## 실행 방법
-1. SelfDrivingSimulator.zip 압축 해제
-2. SelfDrivingSimulator 폴더에 있는 SelfDrivingSimulator.exe 실행
+1. git clone 혹은 zip파일로 다운로드 후 압축해제
+2. 최상위 폴더에 있는 SelfDrivingSimulator.exe 실행
